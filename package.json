@@ -9,10 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "axios": "^1.7.7",
     "mongodb": "^6.10.0",
     "next": "14.2.17",
     "react": "^18",
     "react-dom": "^18"
+=======
+    "next": "14.2.17",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router-dom": "^6.28.0"
+>>>>>>> a14027246e7f606f4dfc0f7bbf55ef1c59345cef
   },
   "devDependencies": {
     "@types/node": "^20",
