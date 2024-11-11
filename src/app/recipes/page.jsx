@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import styles from './recipes.module.css';
-import RecipeCard from '../components/recipeCard/recipeCard';
+import RecipeCard from '@/components/recipeCard/recipeCard';
 
 function Recipes() {
     const [recipes,setRecipes] = useState([]);
