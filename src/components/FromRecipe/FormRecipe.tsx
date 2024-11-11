@@ -5,11 +5,11 @@ import { z } from 'zod';
 import styles from  '@/components/FromRecipe/FormRecipe.module.css';
 
 const recipeSchema = z.object({
-    recipeName: z.string().min(1, "You need to write the recipe name"),
+  nameRecipe: z.string().min(1, "You need to write the recipe name"),
     category: z.enum(["Breakfest", "Pasta", "Salad", "Main course", "Dessert"], {
       required_error: "You need to choose category",
     }),
-    imageUrl: z.string().url("You need enter a URL of the recipe"),
+    image: z.string().url("You need enter a URL of the recipe"),
     ingredients: z
       .array(
         z.object({
@@ -18,7 +18,7 @@ const recipeSchema = z.object({
         })
       )
       .min(1, "You need to enter at least one ingredient"),
-    instructions: z.string().min(1, "You need to enter instructions"),
+      preparationInstructions: z.string().min(1, "You need to enter instructions"),
   });
 
 type RecipeFormData = z.infer<typeof recipeSchema>;
@@ -49,9 +49,9 @@ export default function AddRecipe() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>Meal name:</label>
-        <input type="text" {...register("recipeName")} />
-        {errors.recipeName && (
-          <p style={{ color: "red" }}>{errors.recipeName.message}</p>
+        <input type="text" {...register("nameRecipe")} />
+        {errors.nameRecipe && (
+          <p style={{ color: "red" }}>{errors.nameRecipe.message}</p>
         )}
       </div>
 
@@ -71,9 +71,9 @@ export default function AddRecipe() {
 
       <div>
         <label>Image URL:</label>
-        <input type="text" {...register("imageUrl")} />
-        {errors.imageUrl && (
-          <p style={{ color: "red" }}>{errors.imageUrl.message}</p>
+        <input type="text" {...register("image")} />
+        {errors.image && (
+          <p style={{ color: "red" }}>{errors.image.message}</p>
         )}
       </div>
 
@@ -129,9 +129,9 @@ export default function AddRecipe() {
 
       <div className={styles.Instructions}>
         <label>Instructions</label>
-        <textarea {...register("instructions")} />
-        {errors.instructions && (
-          <p style={{ color: "red" }}>{errors.instructions.message}</p>
+        <textarea {...register("preparationInstructions")} />
+        {errors.preparationInstructions && (
+          <p style={{ color: "red" }}>{errors.preparationInstructions.message}</p>
         )}
       </div>
 
