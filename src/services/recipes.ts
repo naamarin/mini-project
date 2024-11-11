@@ -1,5 +1,5 @@
 import { http } from '@/services/http';
-import { Recipe } from '@/services/http'
+import { Recipe } from '@/services/types'
 
 // get all the recipes
 export const getRecipes = async () => {
