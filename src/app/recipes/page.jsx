@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import styles from './recipes.module.css';
 import RecipeCard from '../components/recipeCard/recipeCard';
 
@@ -114,12 +115,33 @@ const fakeRecipes = [
 
 
 function Recipes() {
+    const [recipes, setRecipes] = useState(fakeRecipes);
+    const [renderedRecipes, setRenderedRecipes] = useState(fakeRecipes);
+
+    const filterFavorites = () => {
+        const favorites = recipes.filter(recipe => localStorage.getItem(`${recipe.id}-is-favorite`) === 'true');
+        setRenderedRecipes(favorites);
+    }
+
+    const allRecipes = () => {
+        setRenderedRecipes(fakeRecipes);
+    }
+
     return (
-        <div className={styles.recipes}>
-            {fakeRecipes.map(recipe => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-            ))}
+        <div>
+            <h1>Recipes</h1>
+            <div className={styles.filter} onClick={filterFavorites}>favorites</div>
+            <div className={styles.filter} onClick={allRecipes}>all</div>
+
+
+            <div className={styles.recipes}>
+                {renderedRecipes.map(recipe => (
+                    <RecipeCard key={recipe.id} recipe={recipe} />
+                ))}
+            </div>
         </div>
+
+
     );
 }
 

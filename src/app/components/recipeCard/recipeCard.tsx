@@ -19,6 +19,12 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
     const [isFavorite, setIsFavorite] = useState(false);
 
     const toggleFavorite = () => {
+        // const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        // console.log(favorites);
+        // favorites.push(recipe.id);
+        // console.log(favorites);
+        // localStorage.setItem('favorites', favorites);
+        localStorage.setItem(`${recipe.id}-is-favorite`, JSON.stringify(!isFavorite));
         setIsFavorite(!isFavorite);
     };
 
@@ -32,7 +38,7 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
                 <p className={styles.cardDescription}>{recipe.instructions}</p>
                 <button className={styles.infoButton}>More Info</button>
                 <button onClick={toggleFavorite}>
-                    {isFavorite ? <FaRegStar className={styles.starIcon} /> : <FaStar className={styles.starIcon} />}
+                    {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.starIcon} />}
                 </button>
 
             </div>
