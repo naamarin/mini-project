@@ -26,7 +26,7 @@ export const getOneRecipe = async (idRecipe:string) => {
 // Post recipe
 export const postRecipe = async (newRecipe:Recipe) => {
     try {
-        const response = await http.post(newRecipe);
+        const response = await http.post('/', newRecipe);
         return response.data; 
     } catch (error) {
         console.error('Error posting recipe:', error); 

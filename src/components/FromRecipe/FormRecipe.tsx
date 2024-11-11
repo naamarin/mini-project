@@ -1,8 +1,9 @@
-import { useState } from "react";
+"use client";
 import { useForm, Controller, useFieldArray, SubmitHandler } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import styles from  '@/components/FromRecipe/FormRecipe.module.css';
+import { postRecipe } from "@/services/recipes";
 
 const recipeSchema = z.object({
     recipeName: z.string().min(1, "You need to write the recipe name"),
@@ -23,7 +24,7 @@ const recipeSchema = z.object({
 
 type RecipeFormData = z.infer<typeof recipeSchema>;
 
-export default function AddRecipe() {
+const AddRecipe = () =>  {
   const {
     register,
     handleSubmit,
@@ -42,7 +43,7 @@ export default function AddRecipe() {
   });
 
   const onSubmit: SubmitHandler<RecipeFormData> = (data) => {
-    console.log("Recipe data:", data);
+    postRecipe(data);
   };
 
   return (
@@ -133,6 +134,8 @@ export default function AddRecipe() {
       </div>
     </form>
   );
-}
+};
+
+export default AddRecipe
 
 
