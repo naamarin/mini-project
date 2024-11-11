@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './recipes.module.css';
-import RecipeCard from '../components/recipeCard/recipeCard';
+import RecipeCard from '../../components/recipeCard/recipeCard';
 
 const fakeRecipes = [
     {

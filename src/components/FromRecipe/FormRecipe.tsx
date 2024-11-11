@@ -31,10 +31,9 @@ export default function AddRecipe() {
   } = useForm<RecipeFormData>({
     resolver: zodResolver(recipeSchema),
     defaultValues: {
-      ingredients: [""],
+      ingredients: [],
     },
   });
-
 
   const { fields, append } = useFieldArray({
     control,
@@ -83,20 +82,40 @@ export default function AddRecipe() {
           <div key={field.id}>
             <Controller
               control={control}
-              name={`ingredients.${index}` as const}  
+              name={`ingredients.${index}.name`}
               render={({ field }) => (
-                <>
-                  <input type="text" {...field} placeholder="ingredient" />
-                  {errors.ingredients?.[index]?.message && (
-                    <p style={{ color: "red" }}>
-                      {errors.ingredients[index].message}
-                    </p>
-                  )}
-                </>
+                <input
+                  type="text"
+                  {...field}
+                  placeholder="Ingredient name"
+                />
               )}
             />
+            {errors.ingredients?.[index]?.name && (
+              <p style={{ color: "red" }}>
+                {errors.ingredients[index].name?.message}
+              </p>
+            )}
+
+            <Controller
+              control={control}
+              name={`ingredients.${index}.quantity`}
+              render={({ field }) => (
+                <input
+                  type="text"
+                  {...field}
+                  placeholder="Ingredient quantity"
+                />
+              )}
+            />
+            {errors.ingredients?.[index]?.quantity && (
+              <p style={{ color: "red" }}>
+                {errors.ingredients[index].quantity?.message}
+              </p>
+            )}
+
             {index === fields.length - 1 && (
-              <button type="button" onClick={() => append("")}>
+              <button type="button" onClick={() => append({ name: "", quantity: "" })}>
                 +
               </button>
             )}
