@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './recipes.module.css';
-import RecipeCard from '../components/recipeCard/recipeCard';
-import RecipesHeader from '../components/recipesHeader/recipesHeader';
+import RecipeCard from '../../components/recipeCard/recipeCard';
+import RecipesHeader from '../../components/recipesHeader/recipesHeader';
+import { getRecipes } from '@/services/recipes';
 
 const fakeRecipes = [
     {
@@ -116,8 +117,29 @@ const fakeRecipes = [
 
 
 function Recipes() {
-    const [recipes, setRecipes] = useState(fakeRecipes);
-    const [renderedRecipes, setRenderedRecipes] = useState(fakeRecipes);
+    const [recipes, setRecipes] = useState([]);
+    const [renderedRecipes, setRenderedRecipes] = useState([]);
+    const [loading,setLoading] = useState(true);
+    const [error,setError] = useState(null);
+    
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            try{
+                console.log('Fetching');
+                const data = await getRecipes();
+                console.log("-----------------", data);
+                setRecipes(data);
+                setRenderedRecipes(data); 
+            }
+            catch (err){
+                setError('Failed to fetch recipes');
+            }
+            finally{
+                setLoading(false);
+            }
+        };
+        fetchRecipes();
+    },[]);
 
     const filterFavorites = () => {
         const favorites = recipes.filter(recipe => localStorage.getItem(`${recipe.id}-is-favorite`) === 'true');
@@ -141,7 +163,7 @@ function Recipes() {
     };
 
     const allRecipes = () => {
-        setRenderedRecipes(fakeRecipes);
+        setRenderedRecipes(recipes);
     }
 
     return (
