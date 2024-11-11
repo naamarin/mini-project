@@ -3,6 +3,7 @@ import { Recipe } from '@/services/types'
 
 // get all the recipes
 export const getRecipes = async () => {
+    console.log("in getRecipes");
     try {
         const response = await http.get('');
         return response.data; 
