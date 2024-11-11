@@ -5,7 +5,7 @@ const Form = () => {
    
     return (
         <div>
-            <h1>checking form</h1>
+            <h1>checking form!!</h1>
             <AddRecipe />
         </div>
     );
