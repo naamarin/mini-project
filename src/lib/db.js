@@ -1,4 +1,6 @@
+import { console } from 'inspector';
 import { MongoClient } from 'mongodb';
+console.log("---------", process.env.MONGODB_URI);
 
 const uri = process.env.MONGODB_URI;
 const options = {};
@@ -7,6 +9,7 @@ let client;
 let clientPromise;
 
 if (!process.env.MONGODB_URI) {
+
   throw new Error('Please add your MongoDB URI to .env.local');
 }
 
