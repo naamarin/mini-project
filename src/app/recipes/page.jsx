@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styles from './recipes.module.css';
 import RecipeCard from '../components/recipeCard/recipeCard';
+import RecipesHeader from '../components/recipesHeader/recipesHeader';
 
 const fakeRecipes = [
     {
@@ -123,12 +124,29 @@ function Recipes() {
         setRenderedRecipes(favorites);
     }
 
+    const filterCategory = (category) => {
+        if (category === 'All') {
+            setRenderedRecipes(recipes);
+        } else {
+            const filtered = recipes.filter(recipe => recipe.category === category);
+            setRenderedRecipes(filtered);
+        }
+    };
+
+    const handleSearch = (query) => {
+        const filtered = recipes.filter(recipe =>
+            recipe.name.toLowerCase().includes(query.toLowerCase())
+        );
+        setRenderedRecipes(filtered);
+    };
+
     const allRecipes = () => {
         setRenderedRecipes(fakeRecipes);
     }
 
     return (
         <div>
+            <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
             <h1>Recipes</h1>
             <div className={styles.filter} onClick={filterFavorites}>favorites</div>
             <div className={styles.filter} onClick={allRecipes}>all</div>
