@@ -9,18 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@hookform/resolvers": "^3.9.1",
     "axios": "^1.7.7",
     "mongodb": "^6.10.0",
     "next": "14.2.17",
     "react": "^18",
-    "react-dom": "^18"
-=======
-    "next": "14.2.17",
-    "react": "^18",
     "react-dom": "^18",
-    "react-router-dom": "^6.28.0"
->>>>>>> a14027246e7f606f4dfc0f7bbf55ef1c59345cef
+    "react-hook-form": "^7.53.2",
+    "react-router-dom": "^6.28.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
