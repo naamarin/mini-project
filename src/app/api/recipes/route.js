@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db('recipes'); // הכניסי כאן את שם הדאטהבייס שלך
+    const db = client.db('recipes'); 
     const recipes = await db.collection('recipes').find({}).toArray();
     return NextResponse.json(recipes);
   } catch (error) {
