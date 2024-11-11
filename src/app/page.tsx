@@ -17,7 +17,7 @@ export default function Home() {
   );
 }
 
-
+//hbukug
 // export default function Home() {
 //   const [recipes, setRecipes] = useState([]);
 //   const [loading, setLoading] = useState(true);
