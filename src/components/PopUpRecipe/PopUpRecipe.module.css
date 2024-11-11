@@ -1,0 +1,35 @@
+.PopUpRecipe {
+    /* width: 30%; */
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerDetalisRecipe {
+    display: flex;
+
+}
+
+.image {
+    width: 200px;
+    /* flex-grow: 1; */
+}
+
+.detalisRecipe {
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    display: flex;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+}

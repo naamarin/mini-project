@@ -1,6 +1,9 @@
-import React from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 import styles from './recipes.module.css';
 import RecipeCard from '../../components/recipeCard/recipeCard';
+import RecipesHeader from '../../components/recipesHeader/recipesHeader';
+import { getRecipes } from '@/services/recipes';
 
 const fakeRecipes = [
     {
@@ -114,12 +117,71 @@ const fakeRecipes = [
 
 
 function Recipes() {
+    const [recipes, setRecipes] = useState([]);
+    const [renderedRecipes, setRenderedRecipes] = useState([]);
+    const [loading,setLoading] = useState(true);
+    const [error,setError] = useState(null);
+    
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            try{
+                console.log('Fetching');
+                const data = await getRecipes();
+                console.log("-----------------", data);
+                setRecipes(data);
+                setRenderedRecipes(data); 
+            }
+            catch (err){
+                setError('Failed to fetch recipes');
+            }
+            finally{
+                setLoading(false);
+            }
+        };
+        fetchRecipes();
+    },[]);
+
+    const filterFavorites = () => {
+        const favorites = recipes.filter(recipe => localStorage.getItem(`${recipe.id}-is-favorite`) === 'true');
+        setRenderedRecipes(favorites);
+    }
+
+    const filterCategory = (category) => {
+        if (category === 'All') {
+            setRenderedRecipes(recipes);
+        } else {
+            const filtered = recipes.filter(recipe => recipe.category === category);
+            setRenderedRecipes(filtered);
+        }
+    };
+
+    const handleSearch = (query) => {
+        const filtered = recipes.filter(recipe =>
+            recipe.name.toLowerCase().includes(query.toLowerCase())
+        );
+        setRenderedRecipes(filtered);
+    };
+
+    const allRecipes = () => {
+        setRenderedRecipes(recipes);
+    }
+
     return (
-        <div className={styles.recipes}>
-            {fakeRecipes.map(recipe => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-            ))}
+        <div>
+            <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
+            <h1>Recipes</h1>
+            <div className={styles.filter} onClick={filterFavorites}>favorites</div>
+            <div className={styles.filter} onClick={allRecipes}>all</div>
+
+
+            <div className={styles.recipes}>
+                {renderedRecipes.map(recipe => (
+                    <RecipeCard key={recipe.id} recipe={recipe} />
+                ))}
+            </div>
         </div>
+
+
     );
 }
 

@@ -6,11 +6,11 @@ import styles from  '@/components/FromRecipe/FormRecipe.module.css';
 import { postRecipe } from "@/services/recipes";
 
 const recipeSchema = z.object({
-    recipeName: z.string().min(1, "You need to write the recipe name"),
+  nameRecipe: z.string().min(1, "You need to write the recipe name"),
     category: z.enum(["Breakfest", "Pasta", "Salad", "Main course", "Dessert"], {
       required_error: "You need to choose category",
     }),
-    imageUrl: z.string().url("You need enter a URL of the recipe"),
+    image: z.string().url("You need enter a URL of the recipe"),
     ingredients: z
       .array(
         z.object({
@@ -19,7 +19,7 @@ const recipeSchema = z.object({
         })
       )
       .min(1, "You need to enter at least one ingredient"),
-    instructions: z.string().min(1, "You need to enter instructions"),
+      preparationInstructions: z.string().min(1, "You need to enter instructions"),
   });
 
 type RecipeFormData = z.infer<typeof recipeSchema>;
@@ -49,11 +49,11 @@ const AddRecipe = () =>  {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label className={styles.label}>
-          <input className={styles.input} type="text" {...register("recipeName")} placeholder=" " />
-          <span>Meal name</span>
-        </label>
-        {errors.recipeName && <p className={styles.errorMessage}>{errors.recipeName.message}</p>}
+        <label>Meal name:</label>
+        <input type="text" {...register("nameRecipe")} />
+        {errors.nameRecipe && (
+          <p style={{ color: "red" }}>{errors.nameRecipe.message}</p>
+        )}
       </div>
 
       <div>
@@ -71,11 +71,11 @@ const AddRecipe = () =>  {
       </div>
 
       <div>
-        <label className={styles.label}>
-          <input className={styles.input} type="text" {...register("imageUrl")} placeholder=" " />
-          <span>Image URL</span>
-        </label>
-        {errors.imageUrl && <p className={styles.errorMessage}>{errors.imageUrl.message}</p>}
+        <label>Image URL:</label>
+        <input type="text" {...register("image")} />
+        {errors.image && (
+          <p style={{ color: "red" }}>{errors.image.message}</p>
+        )}
       </div>
 
       <div className={styles.ingredients}>
@@ -116,12 +116,12 @@ const AddRecipe = () =>  {
         ))}
       </div>
 
-      <div className={styles.instructions}>
-        <label className={styles.label}>
-          <textarea className={styles.input} {...register("instructions")} placeholder=" " />
-          <span className={styles.Instructions}>Instructions</span>
-        </label>
-        {errors.instructions && <p className={styles.errorMessage}>{errors.instructions.message}</p>}
+      <div className={styles.Instructions}>
+        <label>Instructions</label>
+        <textarea {...register("preparationInstructions")} />
+        {errors.preparationInstructions && (
+          <p style={{ color: "red" }}>{errors.preparationInstructions.message}</p>
+        )}
       </div>
 
       <div className={styles.flex}>
