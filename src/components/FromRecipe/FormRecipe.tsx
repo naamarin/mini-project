@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm, Controller, useFieldArray, SubmitHandler } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import styles from  '@/components/FromRecipe/FormRecipe.module.css';
 
 const recipeSchema = z.object({
     recipeName: z.string().min(1, "You need to write the recipe name"),
@@ -31,7 +32,7 @@ export default function AddRecipe() {
   } = useForm<RecipeFormData>({
     resolver: zodResolver(recipeSchema),
     defaultValues: {
-      ingredients: [],
+      ingredients: [{ name: "", quantity: "" }],
     },
   });
 
@@ -76,7 +77,7 @@ export default function AddRecipe() {
         )}
       </div>
 
-      <div>
+      <div className={styles.Ingredients}>
         <label>Ingredients</label>
         {fields.map((field, index) => (
           <div key={field.id}>
@@ -97,7 +98,7 @@ export default function AddRecipe() {
               </p>
             )}
 
-            <Controller
+            <Controller 
               control={control}
               name={`ingredients.${index}.quantity`}
               render={({ field }) => (
@@ -126,7 +127,7 @@ export default function AddRecipe() {
         )}
       </div>
 
-      <div>
+      <div className={styles.Instructions}>
         <label>Instructions</label>
         <textarea {...register("instructions")} />
         {errors.instructions && (
