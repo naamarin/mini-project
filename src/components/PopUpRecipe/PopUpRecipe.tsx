@@ -13,7 +13,7 @@ const PopUpRecipe = ({ recipe }: { recipe: Recipe }) => {
                     <h1>{recipe.nameRecipe}</h1>
                     <div className={styles.category}>
                         <p>{recipe.category}</p>
-                        <FaRegStar />
+                        <FaRegStar className={styles.FaRegStar}/>
                     </div>
                     <div className={styles.ingredients}>
                         <h2>Ingeridents</h2>
