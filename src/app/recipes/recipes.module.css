@@ -5,3 +5,8 @@
     margin: 2rem;
     width: 80%;
 }
+
+.filter:hover {
+    cursor: pointer;
+    border-bottom: 2px solid purple;
+}
