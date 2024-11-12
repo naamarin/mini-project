@@ -1,5 +1,6 @@
 import { http } from '@/services/http';
 import { Recipe } from '@/services/types'
+import { RecipeFormData } from '@/components/FromRecipe/FormRecipe'
 
 // get all the recipes
 export const getRecipes = async () => {
@@ -25,7 +26,7 @@ export const getOneRecipe = async (idRecipe:string) => {
 };
 
 // Post recipe
-export const postRecipe = async (newRecipe:Recipe) => {
+export const postRecipe = async (newRecipe:RecipeFormData) => {
     try {
         const response = await http.post('/',newRecipe);
         return response.data; 

@@ -14,7 +14,6 @@ export type Recipe = {
     preparationInstructions: string; // Instructions as a single string, or array if multiple steps
 };
 
-
 function RecipeCard({ recipe }: { recipe: Recipe }) {
     const [isFavorite, setIsFavorite] = useState(false);
 

@@ -1,0 +1,83 @@
+.PopUpRecipe {
+    width: 30%;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid gray;
+    border-radius: 2%;
+}
+
+.containerDetalisRecipe {
+    display: flex;
+    /* background-color: palegreen; */
+
+}
+
+.image {
+    width: 50%;
+    border-radius: 7%;
+    border: 1px gray solid;
+    margin: 1rem 0 0 0.8rem;
+}
+
+.detalisRecipe {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* background-color: brown; */
+    flex-grow: 1;
+    margin-top: 1rem;
+}
+
+.detalisRecipe h1 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: yellowgreen; */
+}
+
+.category p {
+    margin: 0 0.5rem;
+    font-weight: bold;
+}
+
+.category .FaRegStar {
+    margin: 0 0.5rem;
+    /* color: gold;     */
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
+    /* background-color: blueviolet; */
+    margin: 1rem;
+}
+
+.ingredients h2 {
+    font-weight: bold;
+    /* background-color: red; */
+}
+
+.ingredients ul {
+    /* background-color: yellow; */
+    margin: 0.5rem 0 0 0.5rem;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5rem 0 2.5rem 0.5rem;
+    /* background-color: orange; */
+}
+
+.instructions h2 {
+    margin-left: 0.5rem;
+    font-weight: bold;
+}
