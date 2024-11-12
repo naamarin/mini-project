@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from './recipesHeader.module.css';
 
-const fakeCategories = ['All', 'Asian', 'Breakfast', 'Mexican', 'Salad', 'Pasta']
+const fakeCategories = ['All', 'Dessert', 'Breakfast', 'Main Course', 'Salad']
 
 function RecipesHeader({ onSelect, onSearch }: { onSelect: Function, onSearch: Function }) {
 

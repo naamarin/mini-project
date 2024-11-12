@@ -1,20 +1,8 @@
-"use client";
-import Link from 'next/link';
-// import Image from "next/image";
-// import Recipes from "./recipes/page";
-// import RecipesHeader from '@/components/recipesHeader/recipesHeader';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  
-  return (
-    <header style={{ padding: '20px', backgroundColor: '#f8f9fa', borderBottom: '1px solid #ccc' }}>
-        <h1>Recipes</h1>
-        <nav style={{ display: 'flex', gap: '20px' }}>
-          <Link href="/recipes">All Recipes</Link>
-          <Link href="/favorites">Favorites</Link>
-        </nav>
-      </header>
-  );
+  // Redirect to /recipes
+  redirect('/recipes');
+
+  return null; // Render nothing as we are redirecting
 }
-
-
