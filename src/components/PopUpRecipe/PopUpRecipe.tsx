@@ -7,36 +7,44 @@ import React, { useState, Dispatch, SetStateAction } from 'react';
 interface PopUpRecipeProps {
     recipe: Recipe;
     setIsPopUp: Dispatch<SetStateAction<boolean>>;
-  }
+}
 
-  const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
+const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
     return (
-        <div className={styles.PopUpRecipe}>
-            <button onClick={() => setIsPopUp(false)}>Close</button>
-            <div className={styles.containerDetalisRecipe}>
-                <img className={styles.image} src={recipe.image} alt={recipe.nameRecipe} />
-                <div className={styles.detalisRecipe}>
-                    <h1>{recipe.nameRecipe}</h1>
-                    <div className={styles.category}>
-                        <p>{recipe.category}</p>
-                        <FaRegStar className={styles.FaRegStar}/>
+        <>
+            <div className={styles.overlay} onClick={() => setIsPopUp(false)}></div>
+            <div className={styles.PopUpRecipe}>
+               
+                {/* קונטיינר לתוכן */}
+                <div className={styles.containerDetalisRecipe}>
+                    {/*כותרות*/}
+                    <button className={styles.btn} onClick={() => setIsPopUp(false)}>x</button>
+                    <div className={styles.detalisRecipe}>
+                        <h1>{recipe.nameRecipe}</h1>
+                        <div className={styles.category}>
+                            <p>{recipe.category}</p>
+                            <FaRegStar className={styles.FaRegStar} />
+                        </div>
                     </div>
+                    {/*תמונה*/}
+                    <img className={styles.image} src={recipe.image} alt={recipe.nameRecipe} />
+                    {/*רכיבים*/}
                     <div className={styles.ingredients}>
-                        <h2>Ingeridents</h2>
+                        <h2 className={styles.h2}>Ingeridents</h2>
                         <ul className={styles.listIngredients}>
                             {recipe.ingredients.map((ingredient, index) => (
                                 <li key={index}>{ingredient.name} - {ingredient.quantity}</li>
                             ))}
                         </ul>
                     </div>
+                    {/*אופן ההכנה*/}
+                    <div className={styles.instructions}>
+                        <h2 className={styles.h2}>Instructions</h2>
+                        <p>{recipe.preparationInstructions}</p>
+                    </div>
                 </div>
-
             </div>
-            <div className={styles.instructions}>
-                <h2>Instructions</h2>
-                <p>{recipe.preparationInstructions}</p>
-            </div>
-        </div>
+        </>
     );
 }
 
