@@ -2,16 +2,7 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 import styles from './recipeCard.module.css';
 import { FaRegStar, FaStar } from "react-icons/fa";
-
-export type Recipe = {
-    id: string;
-    nameRecipe: string;
-    category: string;
-    image: string; // URL as a string
-    ingredients:  Array<{ name: string; quantity: string }>;
-    // ingredients: string[]; // Array of ingredient strings
-    preparationInstructions: string; // Instructions as a single string, or array if multiple steps
-};
+import { Recipe } from '@/services/types';
 
 interface recipeCardProps {
     recipe: Recipe;
@@ -23,7 +14,7 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
     const [isFavorite, setIsFavorite] = useState(false);
 
     const toggleFavorite = () => {
-        localStorage.setItem(`${recipe.id}-is-favorite`, JSON.stringify(!isFavorite));
+        localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));
         setIsFavorite(!isFavorite);
     };
 
