@@ -29,7 +29,7 @@ function Recipes() {
     }, []);
 
     const filterFavorites = () => {
-        const favorites = recipes.filter(recipe => localStorage.getItem(`${recipe._id}-is-favorite`) === 'true');
+        const favorites = renderedRecipes.filter(recipe => localStorage.getItem(`${recipe._id}-is-favorite`) === 'true');
         setRenderedRecipes(favorites);
     }
 
@@ -37,13 +37,13 @@ function Recipes() {
         if (category === 'All') {
             setRenderedRecipes(recipes);
         } else {
-            const filtered = recipes.filter(recipe => recipe.category === category);
+            const filtered = renderedRecipes.filter(recipe => recipe.category === category);
             setRenderedRecipes(filtered);
         }
     };
 
     const handleSearch = (query) => {
-        const filtered = recipes.filter(recipe =>
+        const filtered = renderedRecipes.filter(recipe =>
             recipe.nameRecipe.toLowerCase().includes(query.toLowerCase())
         );
         setRenderedRecipes(filtered);
