@@ -22,9 +22,9 @@ const recipeSchema = z.object({
       preparationInstructions: z.string().min(1, "You need to enter instructions"),
   });
 
-type RecipeFormData = z.infer<typeof recipeSchema>;
+export type RecipeFormData = z.infer<typeof recipeSchema>;
 
-const AddRecipe = () =>  {
+const FormRecipe = () =>  {
   const {
     register,
     handleSubmit,
@@ -136,6 +136,6 @@ const AddRecipe = () =>  {
   );
 };
 
-export default AddRecipe
+export default FormRecipe
 
 
