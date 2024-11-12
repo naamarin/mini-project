@@ -1,6 +1,6 @@
 import { http } from '@/services/http';
 import { Recipe } from '@/services/types';
-import { RecipeFormData } from '@/components/FromRecipe/FormRecipe';
+import { RecipeFormData } from '@/services/types';
 
 // Constants
 const CACHE_KEY = 'recipesCache';
@@ -32,7 +32,6 @@ const setCachedData = (data: Recipe[]) => {
 
 // Get all recipes with caching
 export const getRecipes = async () => {
-  console.log("in getRecipes");
 
   // Try to get cached data
   const cachedRecipes = getCachedData();

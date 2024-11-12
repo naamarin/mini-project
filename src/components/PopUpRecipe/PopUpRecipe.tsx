@@ -30,10 +30,9 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
         <>
             <div className={styles.overlay} onClick={() => setIsPopUp(false)}></div>
             <div className={styles.PopUpRecipe}>
-
-                {/* קונטיינר לתוכן */}
+               
                 <div className={styles.containerDetalisRecipe}>
-                    {/*כותרות*/}
+
                     <button className={styles.btn} onClick={() => setIsPopUp(false)}>x</button>
                     <div className={styles.detalisRecipe}>
                         <h1>{recipe.nameRecipe}</h1>
@@ -44,9 +43,9 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
                             </div>
                         </div>
                     </div>
-                    {/*תמונה*/}
+
                     <img className={styles.image} src={recipe.image} alt={recipe.nameRecipe} />
-                    {/*רכיבים*/}
+
                     <div className={styles.ingredients}>
                         <h2 className={styles.h2}>Ingeridents</h2>
                         <ul className={styles.listIngredients}>
@@ -55,7 +54,7 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
                             ))}
                         </ul>
                     </div>
-                    {/*אופן ההכנה*/}
+
                     <div className={styles.instructions}>
                         <h2 className={styles.h2}>Instructions</h2>
                         <p>{recipe.preparationInstructions}</p>
