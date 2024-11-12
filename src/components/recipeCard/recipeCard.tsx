@@ -7,11 +7,11 @@ import { Recipe } from '@/services/types';
 interface recipeCardProps {
     recipe: Recipe;
     setIsPopUp: Dispatch<SetStateAction<boolean>>;
-    setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;  
-  }
+    setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;
+}
 
 const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelectedRecipe }) => {
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`)));
 
     const toggleFavorite = () => {
         localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));
