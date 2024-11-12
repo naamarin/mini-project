@@ -43,7 +43,7 @@ function RecipesHeader({ onSelect, onSearch }: { onSelect: Function, onSearch: F
                 />
             </div>
             <Link href="/addRecipe"> 
-                <button>add recipe</button> 
+                <button className={styles.addButton}>Add</button> 
             </Link>
         </div>
     );
