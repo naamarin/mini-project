@@ -5,16 +5,17 @@ import RecipeCard from '../../components/recipeCard/recipeCard';
 import RecipesHeader from '../../components/recipesHeader/recipesHeader';
 import { getRecipes } from '@/services/recipes';
 import PopUpRecipe from '@/components/PopUpRecipe/PopUpRecipe'
+import Link from 'next/link';
 
 function Recipes() {
     const [recipes, setRecipes] = useState([]);
     const [renderedRecipes, setRenderedRecipes] = useState([]);
-    const [loading,setLoading] = useState(true);
-    const [error,setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [isPopUp, setIsPopUp] = useState(false);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-  useEffect(() => {
+    useEffect(() => {
         const fetchRecipes = async () => {
             try {
                 const data = await getRecipes();
@@ -32,7 +33,7 @@ function Recipes() {
     }, []);
 
     const filterFavorites = () => {
-        const favorites = recipes.filter(recipe => localStorage.getItem(`${recipe._id}-is-favorite`) === 'true');
+        const favorites = renderedRecipes.filter(recipe => localStorage.getItem(`${recipe._id}-is-favorite`) === 'true');
         setRenderedRecipes(favorites);
     }
 
@@ -40,13 +41,13 @@ function Recipes() {
         if (category === 'All') {
             setRenderedRecipes(recipes);
         } else {
-            const filtered = recipes.filter(recipe => recipe.category === category);
+            const filtered = renderedRecipes.filter(recipe => recipe.category === category);
             setRenderedRecipes(filtered);
         }
     };
 
     const handleSearch = (query) => {
-        const filtered = recipes.filter(recipe =>
+        const filtered = renderedRecipes.filter(recipe =>
             recipe.nameRecipe.toLowerCase().includes(query.toLowerCase())
         );
         setRenderedRecipes(filtered);
@@ -58,31 +59,37 @@ function Recipes() {
 
     return (
         <div>
-          <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
-          <h1>Recipes</h1>
-          <div className={styles.filter} onClick={filterFavorites}>favorites</div>
-          <div className={styles.filter} onClick={allRecipes}>all</div>
-         
-          {isPopUp && selectedRecipe && (
-            <PopUpRecipe 
-              recipe={selectedRecipe} 
-              setIsPopUp={setIsPopUp} 
-            />
-         
-         )}
-          <div className={styles.recipes}>
-            {renderedRecipes.map((recipe, index) => (
-              <div key={index}>
-                <RecipeCard
-                  recipe={recipe}
-                  setIsPopUp={setIsPopUp}
-                  setSelectedRecipe={setSelectedRecipe} 
+            <div className={styles.header}>
+                <h1 className={styles.title}>Recipes</h1>
+                <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
+                <div className={styles.wrapper}>
+                    <div className={styles.filter} onClick={filterFavorites}>Favorites</div>
+                    <div className={styles.filter} onClick={allRecipes}>All</div>
+                    <Link href="/addRecipe">
+                        <button className={styles.addButton}>Add</button>
+                    </Link>
+                </div>
+            </div>
+
+            {isPopUp && selectedRecipe && (
+                <PopUpRecipe
+                    recipe={selectedRecipe}
+                    setIsPopUp={setIsPopUp}
                 />
-              </div>
-            ))}
-          </div>
+
+            )}
+            <div className={styles.recipes}>
+                {renderedRecipes.map((recipe, index) => (
+                    <RecipeCard
+                        key={index}
+                        recipe={recipe}
+                        setIsPopUp={setIsPopUp}
+                        setSelectedRecipe={setSelectedRecipe}
+                    />
+                ))}
+            </div>
         </div>
-      );
+    );
 }
 
 export default Recipes;
