@@ -1,12 +1,18 @@
 'use client';
 import styles from './PopUpRecipe.module.css';
-import { Recipe } from '@/services/types'
+import { Recipe } from '@/components/recipeCard/recipeCard';
 import { FaRegStar } from "react-icons/fa";
+import React, { useState, Dispatch, SetStateAction } from 'react';
 
-const PopUpRecipe = ({ recipe }: { recipe: Recipe }) => {
+interface PopUpRecipeProps {
+    recipe: Recipe;
+    setIsPopUp: Dispatch<SetStateAction<boolean>>;
+  }
 
+  const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
     return (
         <div className={styles.PopUpRecipe}>
+            <button onClick={() => setIsPopUp(false)}>Close</button>
             <div className={styles.containerDetalisRecipe}>
                 <img className={styles.image} src={recipe.image} alt={recipe.nameRecipe} />
                 <div className={styles.detalisRecipe}>

@@ -4,14 +4,17 @@ import styles from './recipes.module.css';
 import RecipeCard from '../../components/recipeCard/recipeCard';
 import RecipesHeader from '../../components/recipesHeader/recipesHeader';
 import { getRecipes } from '@/services/recipes';
+import PopUpRecipe from '@/components/PopUpRecipe/PopUpRecipe'
 
 function Recipes() {
     const [recipes, setRecipes] = useState([]);
     const [renderedRecipes, setRenderedRecipes] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loading,setLoading] = useState(true);
+    const [error,setError] = useState(null);
+    const [isPopUp, setIsPopUp] = useState(false);
+    const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
         const fetchRecipes = async () => {
             try {
                 const data = await getRecipes();
@@ -55,25 +58,31 @@ function Recipes() {
 
     return (
         <div>
-            <div className={styles.header}>
-                <h1 className={styles.title}>Recipes</h1>
-                <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
-                <div className={styles.wrapper}>
-                    <div className={styles.filter} onClick={filterFavorites}>favorites</div>
-                    <div className={styles.filter} onClick={allRecipes}>all</div>
-                </div>
-            </div>
-
-
-            <div className={styles.recipes}>
-                {renderedRecipes.map(recipe => (
-                    <RecipeCard key={recipe._id} recipe={recipe} />
-                ))}
-            </div>
+          <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
+          <h1>Recipes</h1>
+          <div className={styles.filter} onClick={filterFavorites}>favorites</div>
+          <div className={styles.filter} onClick={allRecipes}>all</div>
+         
+          {isPopUp && selectedRecipe && (
+            <PopUpRecipe 
+              recipe={selectedRecipe} 
+              setIsPopUp={setIsPopUp} 
+            />
+         
+         )}
+          <div className={styles.recipes}>
+            {renderedRecipes.map((recipe, index) => (
+              <div key={index}>
+                <RecipeCard
+                  recipe={recipe}
+                  setIsPopUp={setIsPopUp}
+                  setSelectedRecipe={setSelectedRecipe} 
+                />
+              </div>
+            ))}
+          </div>
         </div>
-
-
-    );
+      );
 }
 
 export default Recipes;
