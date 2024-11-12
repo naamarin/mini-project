@@ -63,8 +63,8 @@ function Recipes() {
                 <h1 className={styles.title}>Recipes</h1>
                 <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
                 <div className={styles.wrapper}>
+                <div className={styles.filter} onClick={allRecipes}>All</div>
                     <div className={styles.filter} onClick={filterFavorites}>Favorites</div>
-                    <div className={styles.filter} onClick={allRecipes}>All</div>
                     <Link href="/addRecipe">
                         <button className={styles.addButton}>Add</button>
                     </Link>
