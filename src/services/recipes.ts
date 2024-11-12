@@ -1,6 +1,6 @@
 import { http } from '@/services/http';
 import { Recipe } from '@/services/types';
-import { RecipeFormData } from '@/components/FromRecipe/FormRecipe';
+import { RecipeFormData } from '@/services/types';
 
 // Constants
 const CACHE_KEY = 'recipesCache';
