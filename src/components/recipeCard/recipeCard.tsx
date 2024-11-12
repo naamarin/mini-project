@@ -3,7 +3,6 @@ import React, { useState, Dispatch, SetStateAction } from 'react';
 import styles from './recipeCard.module.css';
 import { FaRegStar, FaStar } from "react-icons/fa";
 
-// types.ts
 export type Recipe = {
     id: string;
     nameRecipe: string;
@@ -29,7 +28,7 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
         // favorites.push(recipe.id);
         // console.log(favorites);
         // localStorage.setItem('favorites', favorites);
-        localStorage.setItem(`${recipe.id}-is-favorite`, JSON.stringify(!isFavorite));
+        localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));
         setIsFavorite(!isFavorite);
     };
 
