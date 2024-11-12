@@ -4,6 +4,7 @@ import styles from './recipes.module.css';
 import RecipeCard from '../../components/recipeCard/recipeCard';
 import RecipesHeader from '../../components/recipesHeader/recipesHeader';
 import { getRecipes } from '@/services/recipes';
+import PopUpRecipe from '@/components/PopUpRecipe/PopUpRecipe'
 
 const fakeRecipes = [
     {
@@ -121,6 +122,8 @@ function Recipes() {
     const [renderedRecipes, setRenderedRecipes] = useState([]);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
+    const [isPopUp, setIsPopUp] = useState(false);
+    const [selectedRecipe, setSelectedRecipe] = useState(null);
     
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -168,21 +171,31 @@ function Recipes() {
 
     return (
         <div>
-            <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
-            <h1>Recipes</h1>
-            <div className={styles.filter} onClick={filterFavorites}>favorites</div>
-            <div className={styles.filter} onClick={allRecipes}>all</div>
-
-
-            <div className={styles.recipes}>
-                {renderedRecipes.map(recipe => (
-                    <RecipeCard key={recipe.id} recipe={recipe} />
-                ))}
-            </div>
+          <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
+          <h1>Recipes</h1>
+          <div className={styles.filter} onClick={filterFavorites}>favorites</div>
+          <div className={styles.filter} onClick={allRecipes}>all</div>
+         
+          {isPopUp && selectedRecipe && (
+            <PopUpRecipe 
+              recipe={selectedRecipe} 
+              setIsPopUp={setIsPopUp} 
+            />
+         
+         )}
+          <div className={styles.recipes}>
+            {renderedRecipes.map(recipe => (
+              <div key={recipe.id}>
+                <RecipeCard
+                  recipe={recipe}
+                  setIsPopUp={setIsPopUp}
+                  setSelectedRecipe={setSelectedRecipe} 
+                />
+              </div>
+            ))}
+          </div>
         </div>
-
-
-    );
+      );
 }
 
 export default Recipes;
