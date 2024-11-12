@@ -5,3 +5,26 @@
     margin: 2rem;
     width: 80%;
 }
+
+.filter {
+    margin-right: 1rem;
+    width: 8rem;
+}
+
+.filter:hover {
+    cursor: pointer;
+    border-bottom: 2px solid purple;
+}
+
+.title {
+    font-size: 50px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    margin: 2rem;
+}

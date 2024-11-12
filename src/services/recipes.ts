@@ -1,8 +1,10 @@
 import { http } from '@/services/http';
-import { Recipe } from '@/services/http'
+import { Recipe } from '@/services/types'
+import { RecipeFormData } from '@/components/FromRecipe/FormRecipe'
 
 // get all the recipes
 export const getRecipes = async () => {
+    console.log("in getRecipes");
     try {
         const response = await http.get('');
         return response.data; 
@@ -24,9 +26,9 @@ export const getOneRecipe = async (idRecipe:string) => {
 };
 
 // Post recipe
-export const postRecipe = async (newRecipe:Recipe) => {
+export const postRecipe = async (newRecipe:RecipeFormData) => {
     try {
-        const response = await http.post(newRecipe);
+        const response = await http.post('/',newRecipe);
         return response.data; 
     } catch (error) {
         console.error('Error posting recipe:', error); 
@@ -34,26 +36,6 @@ export const postRecipe = async (newRecipe:Recipe) => {
     }
 };
 
-// update recipe
-export const updateRecipe = async (updateRecipe:Recipe) => {
-    try {
-        const response = await http.patch(updateRecipe);
-        return response.data; 
-    } catch (error) {
-        console.error('Error updating recipe:', error);
-        throw error; 
-    }
-};
 
 
-// delete recipe
-export const deleteRecipe = async (idRecipe:string) => {
-    try {
-        const response = await http.delete(`/${idRecipe}`); 
-        return response.data; 
-    } catch (error) {
-        console.error('Error deleting card:', error); 
-        throw error; 
-    }
-};
 
