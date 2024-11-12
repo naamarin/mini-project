@@ -2,7 +2,7 @@
 import styles from './PopUpRecipe.module.css';
 import { Recipe } from '@/services/types'
 import { FaRegStar, FaStar } from "react-icons/fa";
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 
 interface PopUpRecipeProps {
     recipe: Recipe;
@@ -11,7 +11,21 @@ interface PopUpRecipeProps {
 
 const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
 
-    const isFavorite = localStorage.getItem(`${recipe._id}-is-favorite`)
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    // בדיקה ראשונית של מצב ה"אהוב" והגדרת ה-state
+    useEffect(() => {
+        const favoriteStatus = localStorage.getItem(`${recipe._id}-is-favorite`) === 'true';
+        setIsFavorite(favoriteStatus);
+    }, [recipe._id]);
+
+    // פונקציה לשינוי מצב ה"אהוב" ושמירתו ב-localStorage
+    const toggleFavorite = () => {
+        const newFavoriteStatus = !isFavorite;
+        setIsFavorite(newFavoriteStatus);
+        localStorage.setItem(`${recipe._id}-is-favorite`, newFavoriteStatus.toString());
+    };
+
     return (
         <>
             <div className={styles.overlay} onClick={() => setIsPopUp(false)}></div>
@@ -25,7 +39,7 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
                         <h1>{recipe.nameRecipe}</h1>
                         <div className={styles.category}>
                             <p>{recipe.category}</p>
-                            <div >
+                            <div onClick={toggleFavorite}>
                                 {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.FaRegStar} />}
                             </div>
                         </div>

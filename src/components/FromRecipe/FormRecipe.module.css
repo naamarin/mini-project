@@ -1,164 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Gidugu&display=swap");
+
+
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 350px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-  }  
-  
-  .errorMessage {
-    color: red;
-    font-size: 14px;
-  }
-  
-  .flex {
-    display: flex;
-    width: 100%;
-    gap: 6px;
-  }
-  
-  .label {
-    position: relative;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 5px;
-  }
-  
-  .label .input + span {
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-  }
-  
-  .label .input:placeholder-shown + span {
-    top: 15px;
-    font-size: 0.9em;
-  }
-  
-  .input:focus + span,
-  .input:valid + span
-  {
-    top: 22px;
-    font-size: 0.7em;
-    font-weight: 600;
-  }
-
-  .input:valid + span  {
-    color: purple;
-  }
-  
-  .fancy {
-    background-color: transparent;
-    border: 2px solid #cacaca;
-    border-radius: 0px;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: 390;
-    letter-spacing: 2px;
-    margin: 0;
-    outline: none;
-    overflow: visible;
-    padding: 8px 30px;
-    position: relative;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    font-size: 13px;
-  }
-  
-  .fancy::before {
-    content: " ";
-    width: 1.7rem;
-    height: 2px;
-    background: #cacaca;
-    top: 50%;
-    left: 1.5em;
-    position: absolute;
-    transform: translateY(-50%);
-    transform-origin: center;
-    transition: background 0.3s linear, width 0.3s linear;
-  }
-  
-  .text {
-    font-size: 1.125em;
-    line-height: 1.33333em;
-    padding-left: 2em;
-    color: #818181;
-    transition: all 0.3s ease-in-out;
-    text-transform: lowercase;
-  }
-  
-  .topKey {
-    height: 2px;
-    width: 1.5625rem;
-    top: -2px;
-    left: 0.625rem;
-    position: absolute;
-    background: white;
-    transition: width 0.5s ease-out, left 0.3s ease-out;
-  }
-  
-  .bottomKey1 {
-    height: 2px;
-    width: 1.5625rem;
-    right: 1.875rem;
-    bottom: -2px;
-    position: absolute;
-    background: white;
-    transition: width 0.5s ease-out, right 0.3s ease-out;
-  }
-  
-  .bottomKey2 {
-    height: 2px;
-    width: 0.625rem;
-    right: 0.625rem;
-    bottom: -2px;
-    position: absolute;
-    background: white;
-    transition: width 0.5s ease-out, right 0.3s ease-out;
-  }
-  
-  .fancy:hover {
-    color: white;
-    background: #cacaca;
-  }
-  
-  .fancy:hover::before {
-    width: 1.5rem;
-    background: white;
-  }
-  
-  .fancy:hover .text {
-    color: white;
-    padding-left: 1.5em;
-  }
-  
-  .fancy:hover .topKey {
-    left: -2px;
-    width: 0px;
-  }
-  
-  .fancy:hover .bottomKey1,
-  .fancy:hover .bottomKey2 {
-    right: 0;
-    width: 0;
-  }
-
-  .Instructions {
-    position: relative;
-    margin-top: -30px;
-  }
-
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 450px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+.label {
+  font-family: "Gidugu", sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: normal;
+  color: #333;
+  margin-bottom: 8px;
+}
+.optionText {
+  font-family: "Gidugu", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  color: #333;
+}
+.errorMessage {
+  color: red;
+  font-size: 14px;
+}
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  justify-content: space-between;
+}
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(105, 105, 105, 0.4);
+  border-radius: 8px;
+  font-size: 18px;
+  transition: border 0.3s ease;
+  font-family: "Gidugu", sans-serif;
+  font-style: normal;
+  color: #333;
+}
+.input:focus {
+  border-color: #6C63FF;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
+}
+.selectInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(105, 105, 105, 0.4);
+  border-radius: 8px;
+  font-size: 18px;
+  transition: border 0.3s ease;
+  font-family: "Gidugu", sans-serif;
+  font-style: normal;
+  color: #333;
+}
+.selectInput:focus {
+  border-color: #6C63FF;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
+}
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.Instructions textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(105, 105, 105, 0.4);
+  border-radius: 8px;
+  font-size: 18px;
+  transition: border 0.3s ease;
+  font-family: "Gidugu", sans-serif;
+  font-style: normal;
+  color: #333;
+}
+.Instructions textarea:focus {
+  border-color: #6C63FF;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
+}
+.fancy {
+  --primary-color: #645BFF;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+.fancy {
+  --primary-color: #645BFF;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  position: relative;
+}
+.fancy .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fancy .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+.fancy .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+.fancy:hover {
+  background-color: var(--hover-color);
+}
+.fancy:hover .arrow {
+  background: var(--secondary-color);
+}
+.fancy:hover .arrow::before {
+  right: 0;
+}
+.fancy.back .arrow::before {
+  transform: rotate(140deg);
+}
+.fancy.back:hover .arrow::before {
+  right: 3px;
+}
+.inputName {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 5px;
+  transition: border 0.3s ease;
+  font-family: "Gidugu", sans-serif;
+  font-size: 18px;
+  color: #333;
+}
+.inputQuantity {
+  width: 80px;
+  padding: 10px;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 5px;
+  transition: border 0.3s ease;
+  font-family: "Gidugu", sans-serif;
+  font-size: 18px;
+  color: #333;
+}
+.btn {
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 5px 10px;
+  background-color: transparent;
+  border-radius: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+.btn:hover {
+  transform: rotate(90deg);
+  background-color: #645BFF;
+  border: 2px solid #645BFF;
+}
+.btn .text {
+  color: #0C0C0C;
+  font-weight: bold;
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+.btn:hover .text {
+  color: #FFFFFF;
+}
+.btn .topKey,
+.btn .bottomKey1,
+.btn .bottomKey2 {
+  position: absolute;
+  background-color: #645BFF;
+  height: 2px;
+  width: 20px;
+  transition: transform 0.3s ease;
+}
+.btn .topKey {
+  top: 6px;
+}
+.btn .bottomKey1 {
+  bottom: 6px;
+  left: 6px;
+}
+.btn .bottomKey2 {
+  bottom: 6px;
+  right: 6px;
+}
+.btn:hover .topKey {
+  transform: rotate(45deg);
+}
+.btn:hover .bottomKey1 {
+  transform: rotate(-45deg);
+}
+.btn:hover .bottomKey2 {
+  transform: rotate(45deg);
+}
