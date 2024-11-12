@@ -1,12 +1,17 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import styles from './recipeCard.module.css';
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { Recipe } from "../../services/types"
+import { Recipe } from '@/services/types';
 
+interface recipeCardProps {
+    recipe: Recipe;
+    setIsPopUp: Dispatch<SetStateAction<boolean>>;
+    setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;  
+  }
 
-function RecipeCard({ recipe }: { recipe: Recipe }) {
-    const [isFavorite, setIsFavorite] = useState(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`)));
+const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelectedRecipe }) => {
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const toggleFavorite = () => {
         localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));

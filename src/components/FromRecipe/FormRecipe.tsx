@@ -128,7 +128,7 @@ const FormRecipe = () =>  {
         <button type="button" className={styles.fancy} onClick={() => (window.location.href = "../recipes")}>
           <span className={styles.text}>Back</span>
         </button>
-        <button type="submit" className={styles.fancy}>
+        <button type="submit" className={styles.fancy} onClick={() => (window.location.href = "../recipes")}>
           <span className={styles.text}>Add</span>
         </button>
       </div>
