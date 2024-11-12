@@ -1,6 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import styles from './recipesHeader.module.css';
+import Link from 'next/link';
+
 
 const fakeCategories = ['All', 'Dessert', 'Breakfast', 'Main Course', 'Salad']
 
@@ -20,8 +22,6 @@ function RecipesHeader({ onSelect, onSearch }: { onSelect: Function, onSearch: F
         onSearch(query);
     };
     
-
-
     return (
         <div className={styles.container}>
             <select
@@ -42,6 +42,9 @@ function RecipesHeader({ onSelect, onSearch }: { onSelect: Function, onSearch: F
                     placeholder="Search..."
                 />
             </div>
+            <Link href="/addRecipe"> 
+                <button>add recipe</button> 
+            </Link>
         </div>
     );
 }

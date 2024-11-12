@@ -24,7 +24,7 @@ const recipeSchema = z.object({
 
 export type RecipeFormData = z.infer<typeof recipeSchema>;
 
-const AddRecipe = () =>  {
+const FormRecipe = () =>  {
   const {
     register,
     handleSubmit,
@@ -136,6 +136,6 @@ const AddRecipe = () =>  {
   );
 };
 
-export default AddRecipe
+export default FormRecipe
 
 
