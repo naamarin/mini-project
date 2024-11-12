@@ -1,7 +1,7 @@
 'use client';
 import styles from './PopUpRecipe.module.css';
 import { Recipe } from '@/services/types'
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import React, { useState, Dispatch, SetStateAction } from 'react';
 
 interface PopUpRecipeProps {
@@ -10,6 +10,8 @@ interface PopUpRecipeProps {
 }
 
 const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
+
+    const isFavorite = localStorage.getItem(`${recipe._id}-is-favorite`)
     return (
         <>
             <div className={styles.overlay} onClick={() => setIsPopUp(false)}></div>
@@ -22,7 +24,9 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
                         <h1>{recipe.nameRecipe}</h1>
                         <div className={styles.category}>
                             <p>{recipe.category}</p>
-                            <FaRegStar className={styles.FaRegStar} />
+                            <div >
+                                {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.FaRegStar} />}
+                            </div>
                         </div>
                     </div>
 
