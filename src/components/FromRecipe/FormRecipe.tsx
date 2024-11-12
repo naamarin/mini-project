@@ -1,28 +1,9 @@
 "use client";
 import { useForm, Controller, useFieldArray, SubmitHandler } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import styles from  '@/components/FromRecipe/FormRecipe.module.css';
 import { postRecipe } from "@/services/recipes";
-
-const recipeSchema = z.object({
-  nameRecipe: z.string().min(1, "You need to write the recipe name"),
-    category: z.enum(["Breakfest", "Pasta", "Salad", "Main course", "Dessert"], {
-      required_error: "You need to choose category",
-    }),
-    image: z.string().url("You need enter a URL of the recipe"),
-    ingredients: z
-      .array(
-        z.object({
-          name: z.string().min(1, "Ingredient name is required"),
-          quantity: z.string().min(1, "Ingredient quantity is required"),
-        })
-      )
-      .min(1, "You need to enter at least one ingredient"),
-      preparationInstructions: z.string().min(1, "You need to enter instructions"),
-  });
-
-export type RecipeFormData = z.infer<typeof recipeSchema>;
+import { RecipeFormData, recipeSchema } from "@/services/types";
 
 const FormRecipe = () =>  {
   const {
