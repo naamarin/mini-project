@@ -1,7 +1,8 @@
 "use client";
 import Link from 'next/link';
-import Image from "next/image";
-import Recipes from "./recipes/page";
+// import Image from "next/image";
+// import Recipes from "./recipes/page";
+// import RecipesHeader from '@/components/recipesHeader/recipesHeader';
 
 export default function Home() {
   
@@ -13,11 +14,9 @@ export default function Home() {
           <Link href="/favorites">Favorites</Link>
         </nav>
       </header>
-      
   );
 }
 
-//hbukug
 // export default function Home() {
 //   const [recipes, setRecipes] = useState([]);
 //   const [loading, setLoading] = useState(true);
