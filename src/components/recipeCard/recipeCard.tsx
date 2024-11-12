@@ -18,6 +18,11 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
         setIsFavorite(!isFavorite);
     };
 
+    const showPopUp = () => {
+        setSelectedRecipe(recipe);  
+        setIsPopUp(true);        
+      };
+
     return (
         <div className={styles.card}>
 
@@ -26,7 +31,7 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
                 <p className={styles.cardName}>{recipe.nameRecipe}</p>
                 <p className={styles.cardCategory}>{recipe.category}</p>
                 <p className={styles.cardDescription}>{recipe.preparationInstructions}</p>
-                <button className={styles.infoButton}>More Info</button>
+                <button className={styles.infoButton} onClick={showPopUp}>More Info</button>
                 <button onClick={toggleFavorite}>
                     {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.starIcon} />}
                 </button>
