@@ -71,8 +71,8 @@ function Recipes() {
          
          )}
           <div className={styles.recipes}>
-            {renderedRecipes.map(recipe => (
-              <div key={recipe.id}>
+            {renderedRecipes.map((recipe, index) => (
+              <div key={index}>
                 <RecipeCard
                   recipe={recipe}
                   setIsPopUp={setIsPopUp}

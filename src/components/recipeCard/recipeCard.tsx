@@ -23,12 +23,7 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
     const [isFavorite, setIsFavorite] = useState(false);
 
     const toggleFavorite = () => {
-        // const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-        // console.log(favorites);
-        // favorites.push(recipe.id);
-        // console.log(favorites);
-        // localStorage.setItem('favorites', favorites);
-        localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));
+        localStorage.setItem(`${recipe.id}-is-favorite`, JSON.stringify(!isFavorite));
         setIsFavorite(!isFavorite);
     };
 
