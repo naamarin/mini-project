@@ -1,6 +1,6 @@
 'use client';
 import styles from './PopUpRecipe.module.css';
-import { Recipe } from '@/components/recipeCard/recipeCard';
+import { Recipe } from '@/services/types'
 import { FaRegStar } from "react-icons/fa";
 import React, { useState, Dispatch, SetStateAction } from 'react';
 
