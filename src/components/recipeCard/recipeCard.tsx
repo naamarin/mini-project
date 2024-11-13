@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction,useEffect } from 'react';
 import styles from './recipeCard.module.css';
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { Recipe } from '@/services/types';
@@ -7,11 +7,15 @@ import { Recipe } from '@/services/types';
 interface recipeCardProps {
     recipe: Recipe;
     setIsPopUp: Dispatch<SetStateAction<boolean>>;
-    setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;  
-  }
+    setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | null>>;
+}
 
 const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelectedRecipe }) => {
-    let [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`)));
+
+    useEffect(() => {
+        setIsFavorite(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`)));
+    }, [recipe]);
 
     const toggleFavorite = () => {
         localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));
@@ -21,10 +25,9 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
     const showPopUp = () => {
         setSelectedRecipe(recipe);  
         setIsPopUp(true);        
-      };
+    };
 
     return (
-
         <div className={styles.card}>
 
             <img src={recipe.image} />
@@ -36,6 +39,7 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
                 <button onClick={toggleFavorite}>
                     {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.starIcon} />}
                 </button>
+
             </div>
         </div>
     );

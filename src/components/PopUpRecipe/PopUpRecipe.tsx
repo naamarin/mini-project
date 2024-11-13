@@ -13,18 +13,11 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
 
     const [isFavorite, setIsFavorite] = useState(false);
 
-    // בדיקה ראשונית של מצב ה"אהוב" והגדרת ה-state
     useEffect(() => {
         const favoriteStatus = localStorage.getItem(`${recipe._id}-is-favorite`) === 'true';
         setIsFavorite(favoriteStatus);
     }, [recipe._id]);
-
-    // פונקציה לשינוי מצב ה"אהוב" ושמירתו ב-localStorage
-    const toggleFavorite = () => {
-        const newFavoriteStatus = !isFavorite;
-        setIsFavorite(newFavoriteStatus);
-        localStorage.setItem(`${recipe._id}-is-favorite`, newFavoriteStatus.toString());
-    };
+   
 
     return (
         <>
@@ -38,7 +31,7 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
                         <h1>{recipe.nameRecipe}</h1>
                         <div className={styles.category}>
                             <p>{recipe.category}</p>
-                            <div onClick={toggleFavorite}>
+                            <div >
                                 {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.FaRegStar} />}
                             </div>
                         </div>

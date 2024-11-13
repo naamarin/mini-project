@@ -1,10 +1,15 @@
 "use client";
-import { useForm, Controller, useFieldArray, SubmitHandler } from "react-hook-form";
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import styles from '@/components/FromRecipe/FormRecipe.module.css';
+import {
+  useForm,
+  Controller,
+  useFieldArray,
+  SubmitHandler,
+} from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import styles from "@/components/FromRecipe/FormRecipe.module.css";
 import { postRecipe } from "@/services/recipes";
-
+import { useState } from "react";
 const recipeSchema = z.object({
   nameRecipe: z.string().min(1, "You need to write the recipe name"),
   category: z.enum(["Breakfest", "Pasta", "Salad", "Main course", "Dessert"], {
@@ -42,10 +47,19 @@ const FormRecipe = () => {
     name: "ingredients",
   });
 
-  const onSubmit: SubmitHandler<RecipeFormData> = (data) => {
-    postRecipe(data);
-  };
+  const [successMessage, setSuccessMessage] = useState("");
 
+  const onSubmit: SubmitHandler<RecipeFormData> = async (data) => {
+    try {
+      await postRecipe(data);
+      setSuccessMessage("Recipe added successfully!");
+      setTimeout(() => {
+        window.location.href = "../recipes";
+      }, 1000);
+    } catch (error) {
+      setSuccessMessage("Failed to add recipe, try again");
+    }
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -91,9 +105,7 @@ const FormRecipe = () => {
       <div>
         <label className={styles.label}>Image URL:</label>
         <input type="text" {...register("image")} className={styles.input} />
-        {errors.image && (
-          <p style={{ color: "red" }}>{errors.image.message}</p>
-        )}
+        {errors.image && <p style={{ color: "red" }}>{errors.image.message}</p>}
       </div>
 
       <div className={styles.ingredients}>
@@ -157,6 +169,12 @@ const FormRecipe = () => {
         )}
       </div>
 
+      {successMessage && (
+        <div className={styles.successMessage}>
+          <p>{successMessage}</p>
+        </div>
+      )}
+
       <div className={styles.flex}>
         <button
           type="button"
@@ -179,6 +197,4 @@ const FormRecipe = () => {
   );
 };
 
-export default FormRecipe
-
-
+export default FormRecipe;
