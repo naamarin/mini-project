@@ -64,8 +64,8 @@ function Recipes() {
        <div className={styles.header}>
        <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
        <div className={styles.wrapper}>
-         <div className={styles.filter} onClick={filterFavorites}>Favorites</div>
          <div className={styles.filter} onClick={allRecipes}>All</div>
+         <div className={styles.filter} onClick={filterFavorites}>Favorites</div>
          <Link href="/addRecipe">
            <button className={styles.addButton}>Add</button>
          </Link>
