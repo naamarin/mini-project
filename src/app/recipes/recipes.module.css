@@ -67,7 +67,7 @@
   align-items: center;
   gap: 0.6em;
   font-weight: bold;
-  margin-left: auto;
+  margin-left: 65rem; /*Moving the button to the right*/
 }
 
 .addButton:hover {
