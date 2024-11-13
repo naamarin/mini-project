@@ -7,19 +7,24 @@ import { getRecipes } from '@/services/recipes';
 import PopUpRecipe from '@/components/PopUpRecipe/PopUpRecipe'
 import Link from 'next/link';
 import categoriesStore from '@/store/categoriesStore';
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
+import Pagination from '../../components/Pagination/Pagination';
 
 function Recipes() {
- const [recipes, setRecipes] = useState([]);
- const [renderedRecipes, setRenderedRecipes] = useState([]);
- const [loading, setLoading] = useState(true);
-//  const [error, setError] = useState(null);
- const [isPopUp, setIsPopUp] = useState(false);
- const [selectedRecipe, setSelectedRecipe] = useState(null);
-const { initializeCategories } = categoriesStore();
+  const [recipes, setRecipes] = useState([]);
+  const [renderedRecipes, setRenderedRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  //  const [error, setError] = useState(null);
+  const [isPopUp, setIsPopUp] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const { initializeCategories } = categoriesStore();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
  useEffect(() => {
    const fetchRecipes = async () => {
      try {
+       setLoading(true);
        const data = await getRecipes();
        setRecipes(data);
        setRenderedRecipes(data);
@@ -34,7 +39,7 @@ const { initializeCategories } = categoriesStore();
    };
    fetchRecipes();
  }, []);
-
+  
  const initializeCategoriesStore = (recipes) => {
    const getAllCategories = [...new Set(recipes.map(recipe => recipe.category))];
    initializeCategories(getAllCategories);
@@ -64,46 +69,72 @@ const { initializeCategories } = categoriesStore();
  const allRecipes = () => {
    setRenderedRecipes(recipes);
  }
+ 
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = renderedRecipes.slice(indexOfFirstItem, indexOfLastItem);
 
+  const totalPages = Math.ceil(renderedRecipes.length / itemsPerPage);
 
- return (
-   <div>
-       <h1 className={styles.title}>Recipes</h1>
-       <div className={styles.header}>
-       <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
-       <div className={styles.wrapper}>
-         <div className={styles.filter} onClick={allRecipes}>All</div>
-         <div className={styles.filter} onClick={filterFavorites}>Favorites</div>
-         <Link href="/addRecipe">
-           <button className={styles.addButton}>Add</button>
-         </Link>
-       </div>
-     </div>
+  const goToNextPage = () => {
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
 
-     {loading ? (
-       <h1 style={{ marginLeft: '4rem' }}>Loading...</h1>
-     ) : (
-       <>
-         {isPopUp && selectedRecipe && (
-           <PopUpRecipe
-             recipe={selectedRecipe}
-             setIsPopUp={setIsPopUp}
-           />
-         )}
-         <div className={styles.recipes}>
-           {renderedRecipes.map((recipe, index) => (
-             <RecipeCard
-               key={index}
-               recipe={recipe}
-               setIsPopUp={setIsPopUp}
-               setSelectedRecipe={setSelectedRecipe}
-             />
-           ))}
-         </div>
-       </>
-     )}
-   </div>
- );
+  const goToPreviousPage = () => {
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  return (
+      <div>
+          <div className={styles.header}>
+              <h1 className={styles.title}>Recipes</h1>
+              <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
+              <div className={styles.wrapper}>
+                  <div className={styles.filter} onClick={filterFavorites}>Favorites</div>
+                  <div className={styles.filter} onClick={allRecipes}>All</div>
+                  <Link href="/addRecipe">
+                      <button className={styles.addButton}>Add</button>
+                  </Link>
+              </div>
+          </div>
+
+          {loading ? (
+              <>
+                  <h1 style={{ marginLeft: '4rem' }}>Loading...</h1>
+              </>
+          ) : (
+              <>
+                  {isPopUp && selectedRecipe && (
+                      <PopUpRecipe
+                          recipe={selectedRecipe}
+                          setIsPopUp={setIsPopUp}
+                      />
+                  )}
+                  <div className={styles.recipes}>
+                      {currentItems.map((recipe, index) => (
+                          <RecipeCard
+                              key={index}
+                              recipe={recipe}
+                              setIsPopUp={setIsPopUp}
+                              setSelectedRecipe={setSelectedRecipe}
+                          />
+                      ))}
+                  </div>
+
+                  <Pagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      goToNextPage={goToNextPage}
+                      goToPreviousPage={goToPreviousPage}
+                  />
+              </>
+          )}
+          <footer className={styles.footer}>
+              <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
+          </footer>
+      </div>
+  );
 }
 
 export default Recipes;
