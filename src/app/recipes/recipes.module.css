@@ -66,3 +66,14 @@
 .addButton:hover {
     background-color: var(--hover-color);
 }
+
+.footer {
+    background-color: #645bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+}

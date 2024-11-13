@@ -108,7 +108,7 @@
 
 .infoButton:focus,
 .infoButton:hover {
-    color: #720294;
+    color: #645bff;
 }
 
 .infoButton:focus:after,
@@ -125,7 +125,7 @@
     position: absolute;
     width: 0%;
     height: 1px;
-    background-color: #720294;
+    background-color: #645bff;
     transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
     transition-duration: 400ms;
     transition-property: width, left;
