@@ -14,7 +14,7 @@ function Recipes() {
     const [recipes, setRecipes] = useState([]);
     const [renderedRecipes, setRenderedRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
     const [isPopUp, setIsPopUp] = useState(false);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
 

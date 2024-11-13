@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Heebo:wght@100..900&family=Quicksand:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Heebo:wght@100..900&family=Quicksand:wght@300..700&display=swap");
 
 .recipes {
     display: grid;
@@ -14,7 +14,6 @@
     width: 8rem;
     align-self: end;
     border-bottom: 2px solid gainsboro;
-
 }
 
 .filter:hover {
@@ -24,31 +23,39 @@
 
 .title {
     font-size: 70px;
-    margin-bottom: 1em;
+    margin: 0;
+    padding: 1rem 4rem;
     font-family: "Dancing Script", cursive;
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-
+    background-color: #645bff;
+    color: white;
+    text-align: start;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1em;
 }
 
 .wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: start; 
+    justify-content: start;
     margin-bottom: 2em;
 }
 
 .header {
-    margin: 3.8rem;
+    margin: 0;
+    padding-left: 4rem;
+    width: 100%;
 }
 
-/* From Uiverse.io by satyamchaudharydev */
 .addButton {
     --primary-color: #645bff;
     --secondary-color: #fff;
     --hover-color: #111;
-    --arrow-width: 10px --arrow-stroke: 2px;
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
     box-sizing: border-box;
     border: 0;
     border-radius: 10px;
@@ -60,7 +67,7 @@
     align-items: center;
     gap: 0.6em;
     font-weight: bold;
-    margin-left: auto;
+    margin-left: 65rem;
 }
 
 .addButton:hover {
