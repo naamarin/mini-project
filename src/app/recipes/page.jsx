@@ -6,6 +6,7 @@ import RecipesHeader from '../../components/recipesHeader/recipesHeader';
 import { getRecipes } from '@/services/recipes';
 import PopUpRecipe from '@/components/PopUpRecipe/PopUpRecipe'
 import Link from 'next/link';
+import categoriesStore from '@/store/categoriesStore';
 
 function Recipes() {
  const [recipes, setRecipes] = useState([]);
@@ -14,6 +15,7 @@ function Recipes() {
 //  const [error, setError] = useState(null);
  const [isPopUp, setIsPopUp] = useState(false);
  const [selectedRecipe, setSelectedRecipe] = useState(null);
+const { initializeCategories } = categoriesStore();
 
  useEffect(() => {
    const fetchRecipes = async () => {
@@ -21,6 +23,7 @@ function Recipes() {
        const data = await getRecipes();
        setRecipes(data);
        setRenderedRecipes(data);
+      initializeCategoriesStore(data)
      }
      catch (err) {
        setError('Failed to fetch recipes');
@@ -32,6 +35,11 @@ function Recipes() {
    fetchRecipes();
  }, []);
 
+ const initializeCategoriesStore = (recipes) => {
+   const getAllCategories = [...new Set(recipes.map(recipe => recipe.category))];
+   initializeCategories(getAllCategories);
+ }
+
  const filterFavorites = () => {
    const favorites = renderedRecipes.filter(recipe => localStorage.getItem(`${recipe._id}-is-favorite`) === 'true');
    setRenderedRecipes(favorites);
@@ -41,7 +49,7 @@ function Recipes() {
    if (category === 'All') {
      setRenderedRecipes(recipes);
    } else {
-     const filtered = renderedRecipes.filter(recipe => recipe.category === category);
+     const filtered = recipes.filter(recipe => recipe.category === category);
      setRenderedRecipes(filtered);
    }
  };
