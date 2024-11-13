@@ -13,13 +13,10 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
 
     const [isFavorite, setIsFavorite] = useState(false);
 
-    // בדיקה ראשונית של מצב ה"אהוב" והגדרת ה-state
     useEffect(() => {
         const favoriteStatus = localStorage.getItem(`${recipe._id}-is-favorite`) === 'true';
         setIsFavorite(favoriteStatus);
     }, [recipe._id]);
-
-    // פונקציה לשינוי מצב ה"אהוב" ושמירתו ב-localStorage
    
 
     return (
