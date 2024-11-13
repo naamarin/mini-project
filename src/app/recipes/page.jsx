@@ -57,11 +57,11 @@ function Recipes() {
    setRenderedRecipes(recipes);
  }
 
+
  return (
    <div>
        <h1 className={styles.title}>Recipes</h1>
        <div className={styles.header}>
-
        <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
        <div className={styles.wrapper}>
          <div className={styles.filter} onClick={filterFavorites}>Favorites</div>
