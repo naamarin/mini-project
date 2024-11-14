@@ -4,13 +4,10 @@ import { NextResponse } from 'next/server';
 
 
 export async function GET() {
-  console.log('in GET');
   try {
-    console.log('in try');
     const client = await clientPromise;
     const db = client.db('recipes'); 
     const recipes = await db.collection('recipes').find({}).toArray();
-    console.log(recipes);
     return NextResponse.json(recipes);
   } catch (error) {
     console.log(error);

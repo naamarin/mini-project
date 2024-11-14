@@ -20,29 +20,50 @@ function Recipes() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        setLoading(true);
-        const data = await getRecipes();
-        setRecipes(data);
-        setRenderedRecipes(data);
-        initializeCategoriesStore(data);
-      } catch (err) {
-        setError("Failed to fetch recipes");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchRecipes();
-  }, []);
+ useEffect(() => {
+   const fetchRecipes = async () => {
+     try {
+       setLoading(true);
+       const data = await getRecipes();
+       setRecipes(data);
+       setRenderedRecipes(data);
+       initializeCategoriesStore(data)
+     }
+     catch (err) {
+       setError('Failed to fetch recipes');
+     }
+     finally {
+       setLoading(false);
+     }
+   };
+   fetchRecipes();
+ }, []);
+  
+ const initializeCategoriesStore = (recipes) => {
+   const allCategories = [...new Set(recipes.map(recipe => recipe.category))];
+   initializeCategories(allCategories);
+ } 
 
-  const initializeCategoriesStore = (recipes) => {
-    const getAllCategories = [
-      ...new Set(recipes.map((recipe) => recipe.category)),
-    ];
-    initializeCategories(getAllCategories);
+  const filterFavorites = () => {
+      const favorites = renderedRecipes.filter(recipe => localStorage.getItem(`${recipe._id}-is-favorite`) === 'true');
+      setRenderedRecipes(favorites);
+  }
+
+  const filterCategory = (category) => {
+    if (category === 'All') {
+      setRenderedRecipes(recipes);
+    } else {
+      const filtered = recipes.filter(recipe => recipe.category === category);
+      setRenderedRecipes(filtered);
+    }
   };
+
+  const handleSearch = (query) => {
+        const filtered = recipes.filter(recipe =>
+            recipe.nameRecipe.toLowerCase().includes(query.toLowerCase())
+        );
+        setRenderedRecipes(filtered);
+    };
 
   const filterFavorites = () => {
     const favorites = renderedRecipes.filter(
