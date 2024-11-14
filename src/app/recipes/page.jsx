@@ -7,7 +7,6 @@ import { getRecipes } from "@/services/recipes";
 import PopUpRecipe from "@/components/PopUpRecipe/PopUpRecipe";
 import Link from "next/link";
 import categoriesStore from "@/store/categoriesStore";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import Pagination from "../../components/Pagination/Pagination";
 
 function Recipes() {
@@ -19,7 +18,7 @@ function Recipes() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const { initializeCategories } = categoriesStore();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 9;
 
   useEffect(() => {
     const fetchRecipes = async () => {

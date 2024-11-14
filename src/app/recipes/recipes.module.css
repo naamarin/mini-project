@@ -12,15 +12,15 @@
 }
 
 .filter {
-  margin-right: 1rem;
-  width: 8rem;
-  align-self: end;
-  border-bottom: 2px solid gainsboro;
+    margin-right: 1rem;
+    width: 8rem;
+    align-self: end;
+    border-bottom: 2px solid gainsboro;
 }
 
 .filter:hover {
-  cursor: pointer;
-  border-bottom: 2px solid #645bff;
+    cursor: pointer;
+    border-bottom: 2px solid #645bff;
 }
 
 .recipesHeader {
@@ -80,7 +80,7 @@
 }
 
 .addButton:hover {
-  background-color: var(--hover-color);
+    background-color: var(--hover-color);
 }
 
 .footer {
