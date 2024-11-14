@@ -42,13 +42,14 @@
     flex-direction: row;
     justify-content: start;
     margin-bottom: 2em;
+    padding-left: 4rem;
 }
 
 .header {
     margin: 0;
-    padding-left: 4rem;
     width: 100%;
-}
+} 
+
 
 .addButton {
     --primary-color: #645bff;
