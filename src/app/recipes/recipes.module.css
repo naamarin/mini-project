@@ -34,7 +34,7 @@
     text-align: start;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .wrapper {
@@ -48,8 +48,7 @@
 .header {
     margin: 0;
     width: 100%;
-} 
-
+}
 
 .addButton {
     --primary-color: #645bff;
