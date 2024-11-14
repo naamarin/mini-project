@@ -1,4 +1,4 @@
-import FormRecipe from '../../components/FromRecipe/FormRecipe';
+import FormRecipe from '../../components/FormRecipe/FormRecipe';
 
 const addRecipe = () => {
   return <FormRecipe />;

@@ -28,7 +28,7 @@ function Recipes() {
        const data = await getRecipes();
        setRecipes(data);
        setRenderedRecipes(data);
-      initializeCategoriesStore(data)
+       initializeCategoriesStore(data)
      }
      catch (err) {
        setError('Failed to fetch recipes');
@@ -68,6 +68,11 @@ function Recipes() {
 
  const allRecipes = () => {
    setRenderedRecipes(recipes);
+ }
+
+ const addNewRecipeToRender = (recipe) => {
+  setRecipes((prevRecipes) => [...prevRecipes, recipe]); 
+  setRenderedRecipes((prevRecipes) => [...prevRecipes, recipe]);
  }
  
   // Pagination logic
