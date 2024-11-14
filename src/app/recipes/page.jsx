@@ -19,7 +19,7 @@ function Recipes() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const { initializeCategories } = categoriesStore();
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -91,18 +91,24 @@ function Recipes() {
     <div>
       <div className={styles.header}>
         <h1 className={styles.title}>Recipes</h1>
-        <RecipesHeader onSelect={filterCategory} onSearch={handleSearch} />
-        <div className={styles.wrapper}>
+        <RecipesHeader
+          className={styles.recipesHeader}
+          onSelect={filterCategory}
+          onSearch={handleSearch}
+        />
+      </div>
+      <div className={styles.wrapper}>
+        <div className={styles.filterComponents}>
           <div className={styles.filter} onClick={filterFavorites}>
             Favorites
           </div>
           <div className={styles.filter} onClick={allRecipes}>
             All
           </div>
-          <Link href="/addRecipe">
-            <button className={styles.addButton}>Add</button>
-          </Link>
         </div>
+        <Link href="/addRecipe">
+          <button className={styles.addButton}>Add</button>
+        </Link>
       </div>
 
       {loading ? (

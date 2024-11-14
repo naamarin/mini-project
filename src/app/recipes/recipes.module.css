@@ -4,9 +4,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
-  margin: 2rem;
-  width: 80%;
-  justify-content: center;
+  margin: 0 auto;
+  max-width: 90%;
+  width: 100%;
+  justify-items: center;
+  /* padding: 2rem 0; */
 }
 
 .filter {
@@ -21,33 +23,42 @@
   border-bottom: 2px solid #645bff;
 }
 
+.recipesHeader {
+  padding-top: 10rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #645bff;
+  padding: 1rem 6rem;
+  margin-bottom: 0.5em;
+}
+
 .title {
   font-size: 70px;
   margin: 0;
-  padding: 1rem 4rem;
   font-family: "Dancing Script", cursive;
   font-optical-sizing: auto;
   font-weight: 500;
-  font-style: normal;
-  background-color: #645bff;
   color: white;
   text-align: start;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
 }
 
 .wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
-  margin-bottom: 2em;
-  padding-left: 4rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3rem 6rem 1rem;
+  /* margin-bottom: 1em; */
 }
 
-.header {
-  margin: 0;
-  width: 100%;
+.filterComponents {
+  display: flex;
+  flex-direction: row;
 }
 
 .addButton {
@@ -65,9 +76,7 @@
   display: flex;
   transition: 0.2s background;
   align-items: center;
-  gap: 0.6em;
   font-weight: bold;
-  margin-left: 65rem;
 }
 
 .addButton:hover {
