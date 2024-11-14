@@ -43,7 +43,7 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
                 <p className={styles.cardDescription}>{recipe.preparationInstructions}</p>
                 <button className={styles.infoButton} onClick={showPopUp}>More Info</button>
                 <button onClick={toggleFavorite}>
-                    {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.starIcon} />}
+                    {getStarIcon()}
                 </button>
 
             </div>
