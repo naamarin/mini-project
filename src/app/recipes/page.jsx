@@ -8,6 +8,8 @@ import PopUpRecipe from '@/components/PopUpRecipe/PopUpRecipe'
 import Link from 'next/link';
 
 function Recipes() {
+
+  
  const [recipes, setRecipes] = useState([]);
  const [renderedRecipes, setRenderedRecipes] = useState([]);
  const [loading, setLoading] = useState(true);
@@ -57,6 +59,7 @@ function Recipes() {
    setRenderedRecipes(recipes);
  }
 
+ 
  return (
    <div>
        <h1 className={styles.title}>Recipes</h1>
