@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Heebo:wght@100..900&family=Quicksand:wght@300..700&display=swap");
 
 .recipes {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    margin: 2rem;
-    width: 80%;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 90%;
+  width: 100%;
+  justify-items: center;
+  /* padding: 2rem 0; */
 }
 
 .filter {
@@ -21,54 +23,60 @@
     border-bottom: 2px solid #645bff;
 }
 
-.title {
-    font-size: 70px;
-    margin: 0;
-    padding: 1rem 4rem;
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    background-color: #645bff;
-    color: white;
-    text-align: start;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 1em;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    margin-bottom: 2em;
-    padding-left: 4rem;
+.recipesHeader {
+  padding-top: 10rem;
 }
 
 .header {
-    margin: 0;
-    width: 100%;
-} 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #645bff;
+  padding: 1rem 6rem;
+  margin-bottom: 0.5em;
+}
 
+.title {
+  font-size: 70px;
+  margin: 0;
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  color: white;
+  text-align: start;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3rem 6rem 1rem;
+  /* margin-bottom: 1em; */
+}
+
+.filterComponents {
+  display: flex;
+  flex-direction: row;
+}
 
 .addButton {
-    --primary-color: #645bff;
-    --secondary-color: #fff;
-    --hover-color: #111;
-    --arrow-width: 10px;
-    --arrow-stroke: 2px;
-    box-sizing: border-box;
-    border: 0;
-    border-radius: 10px;
-    color: var(--secondary-color);
-    padding: 0.4em 1.8em;
-    background: var(--primary-color);
-    display: flex;
-    transition: 0.2s background;
-    align-items: center;
-    gap: 0.6em;
-    font-weight: bold;
-    margin-left: 65rem;
+  --primary-color: #645bff;
+  --secondary-color: #fff;
+  --hover-color: #111;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 10px;
+  color: var(--secondary-color);
+  padding: 0.4em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  font-weight: bold;
 }
 
 .addButton:hover {
@@ -76,12 +84,12 @@
 }
 
 .footer {
-    background-color: #645bff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    color: white;
-    font-size: 0.9rem;
-    text-align: center;
+  background-color: #645bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
 }

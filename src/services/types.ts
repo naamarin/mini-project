@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import { z } from 'zod';
+import categoriesStore from '@/store/categoriesStore';
 
 export interface Recipe {
     _id: ObjectId;
@@ -12,9 +13,12 @@ export interface Recipe {
 
 export const recipeSchema = z.object({
     nameRecipe: z.string().min(1, "You need to write the recipe name"),
-      category: z.enum(["Breakfest", "Pasta", "Salad", "Main course", "Dessert"], {
-        required_error: "You need to choose category",
-      }),
+    category: z.string()
+    .min(1, "You need to choose a category")
+    .refine(
+        (val) => categoriesStore.getState().categories.includes(val),
+        "Selected category is not valid"
+    ),
       image: z.string().url("You need enter a URL of the recipe"),
       ingredients: z
         .array(

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, Dispatch, SetStateAction,useEffect } from 'react';
+import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import styles from './recipeCard.module.css';
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { Recipe } from '@/services/types';
@@ -11,11 +11,11 @@ interface recipeCardProps {
 }
 
 const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelectedRecipe }) => {
-    const [isFavorite, setIsFavorite] = useState(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`)));
+    const [isFavorite, setIsFavorite] = useState(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`) === 'true'));
 
-    useEffect(() => {
-        setIsFavorite(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`)));
-    }, [recipe]);
+    // useEffect(() => {
+    //     setIsFavorite(Boolean(localStorage.getItem(`${recipe._id}-is-favorite`)));
+    // }, [recipe]);
 
     const toggleFavorite = () => {
         localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));
@@ -23,9 +23,15 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
     };
 
     const showPopUp = () => {
-        setSelectedRecipe(recipe);  
-        setIsPopUp(true);        
+        setSelectedRecipe(recipe);
+        setIsPopUp(true);
     };
+
+    const getStarIcon = () => {
+        return Boolean(localStorage.getItem(`${recipe._id}-is-favorite`) === 'true') ?
+            <FaStar className={styles.starIcon} /> :
+            <FaRegStar className={styles.starIcon} />;
+    }
 
     return (
         <div className={styles.card}>
@@ -37,7 +43,7 @@ const RecipeCard: React.FC<recipeCardProps> = ({ recipe, setIsPopUp, setSelected
                 <p className={styles.cardDescription}>{recipe.preparationInstructions}</p>
                 <button className={styles.infoButton} onClick={showPopUp}>More Info</button>
                 <button onClick={toggleFavorite}>
-                    {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.starIcon} />}
+                    {getStarIcon()}
                 </button>
 
             </div>

@@ -7,13 +7,16 @@ import {
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import styles from "@/components/FromRecipe/FormRecipe.module.css";
+import styles from "@/components/FormRecipe/FormRecipe.module.css";
 import { postRecipe } from "@/services/recipes";
 import { useState } from "react";
 import { RecipeFormData, recipeSchema } from '@/services/types';
+import { addRecipeToCacehd } from '@/services/recipes';
+import categoriesStore from '@/store/categoriesStore';
 
 const FormRecipe = () => {
   const [successMessage, setSuccessMessage] = useState("");
+  const {categories} = categoriesStore();  
   
   const {
     register,
@@ -34,9 +37,13 @@ const FormRecipe = () => {
 
   const onSubmit: SubmitHandler<RecipeFormData> = async (data) => {
     try {
-      await postRecipe(data);
-      setSuccessMessage("Recipe added successfully!");
+      const insertId = await postRecipe(data);
+      addRecipeToCacehd({
+        _id: insertId,
+        ...data}
+      );
 
+      setSuccessMessage("Recipe added successfully!");
       setTimeout(() => {
         window.location.href = "../recipes";
       }, 1000);
@@ -64,21 +71,10 @@ const FormRecipe = () => {
         <label>
           <select className={styles.selectInput} {...register("category")}>
             <option value="" disabled selected></option>
-            <option className={styles.optionText} value="Breakfast">
-              Breakfast
-            </option>
-            <option className={styles.optionText} value="Pasta">
-              Pasta
-            </option>
-            <option className={styles.optionText} value="Salad">
-              Salad
-            </option>
-            <option className={styles.optionText} value="Main course">
-              Main course
-            </option>
-            <option className={styles.optionText} value="Dessert">
-              Dessert
-            </option>
+            {categories.map(categoty => 
+            <option className={styles.optionText} value={categoty}>
+              {categoty}
+            </option>)}
           </select>
         </label>
         {errors.category && (
