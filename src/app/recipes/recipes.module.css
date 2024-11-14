@@ -34,7 +34,7 @@
   text-align: start;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .wrapper {
@@ -42,11 +42,11 @@
   flex-direction: row;
   justify-content: start;
   margin-bottom: 2em;
+  padding-left: 4rem;
 }
 
 .header {
   margin: 0;
-  padding-left: 4rem;
   width: 100%;
 }
 
@@ -67,9 +67,20 @@
   align-items: center;
   gap: 0.6em;
   font-weight: bold;
-  margin-left: auto;
+  margin-left: 65rem;
 }
 
 .addButton:hover {
   background-color: var(--hover-color);
+}
+
+.footer {
+  background-color: #645bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
 }
