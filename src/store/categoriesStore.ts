@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface CategoriesStore {
     categories: Array<string>;
@@ -6,12 +7,18 @@ interface CategoriesStore {
     initializeCategories: (newCategories: Array<string>) => void;
 }
 
-const categoriesStore = create<CategoriesStore>((set) => ({
-    categories: [],
-    pushCategory: (newCategory: string) =>
-        set((state) => ({ categories: [...state.categories, newCategory] })),
-    initializeCategories: (newCategories: Array<string>) =>
-        set(() => ({ categories: newCategories })),
-}));
-
+const categoriesStore = create<CategoriesStore>()(
+    persist(
+        (set) => ({
+            categories: [],
+            pushCategory: (newCategory: string) =>
+                set((state) => ({ categories: [...state.categories, newCategory] })),
+            initializeCategories: (newCategories: string[]) =>
+                set(() => ({ categories: newCategories })),
+        }),
+        {
+            name: 'categories',
+        }
+    )
+);
 export default categoriesStore;

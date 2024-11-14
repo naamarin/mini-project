@@ -30,6 +30,13 @@ const setCachedData = (data: Recipe[]) => {
   localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
 };
 
+// Helper function to add recipe to cached data
+export const addRecipeToCacehd = (recipe: Recipe) => {
+    const cachedRecipes = getCachedData();  
+    const updatedRecipes = cachedRecipes ? [...cachedRecipes, recipe] : [recipe];    
+    setCachedData(updatedRecipes);
+}
+
 // Get all recipes with caching
 export const getRecipes = async () => {
 
