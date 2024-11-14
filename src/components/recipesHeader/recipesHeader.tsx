@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import styles from './recipesHeader.module.css';
-
+import categoriesStore from '@/store/categoriesStore';
 
 const fakeCategories = ['All', 'Dessert', 'Breakfast', 'Main Course', 'Salad']
 
@@ -9,6 +9,7 @@ function RecipesHeader({ onSelect, onSearch }: { onSelect: Function, onSearch: F
 
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [search, setSearch] = useState('');
+    const {categories} = categoriesStore();
 
     const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(event.target.value);
@@ -28,7 +29,7 @@ function RecipesHeader({ onSelect, onSearch }: { onSelect: Function, onSearch: F
                 value={selectedCategory}
                 onChange={handleSelect}
             >
-                {fakeCategories.map((option, index) => (
+                {['All', ...categories].map((option, index) => (
                     <option key={index} value={option}>
                         {option}
                     </option>
