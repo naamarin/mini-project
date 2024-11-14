@@ -17,13 +17,23 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
         const favoriteStatus = localStorage.getItem(`${recipe._id}-is-favorite`) === 'true';
         setIsFavorite(favoriteStatus);
     }, [recipe._id]);
-   
+
+    const toggleFavorite = () => {
+        localStorage.setItem(`${recipe._id}-is-favorite`, JSON.stringify(!isFavorite));
+        setIsFavorite(!isFavorite);
+    };
+
+    const getStarIcon = () => {
+        return Boolean(localStorage.getItem(`${recipe._id}-is-favorite`) === 'true') ?
+            <FaStar className={styles.starIcon} /> :
+            <FaRegStar className={styles.FaRegStar} />;
+    }
 
     return (
         <>
             <div className={styles.overlay} onClick={() => setIsPopUp(false)}></div>
             <div className={styles.PopUpRecipe}>
-               
+
                 <div className={styles.containerDetalisRecipe}>
 
                     <button className={styles.btn} onClick={() => setIsPopUp(false)}>x</button>
@@ -31,8 +41,8 @@ const PopUpRecipe: React.FC<PopUpRecipeProps> = ({ recipe, setIsPopUp }) => {
                         <h1>{recipe.nameRecipe}</h1>
                         <div className={styles.category}>
                             <p>{recipe.category}</p>
-                            <div >
-                                {isFavorite ? <FaStar className={styles.starIcon} /> : <FaRegStar className={styles.FaRegStar} />}
+                            <div onClick={toggleFavorite}>
+                                {getStarIcon()}
                             </div>
                         </div>
                     </div>

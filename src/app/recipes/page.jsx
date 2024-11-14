@@ -87,57 +87,58 @@ function Recipes() {
     };
 
     return (
-        <div>
-            <div className={styles.header}>
+        <div className={styles.container}>
+            <header className={styles.header}>
                 <h1 className={styles.title}>Recipes</h1>
                 <RecipesHeader
                     className={styles.recipesHeader}
                     onSelect={filterCategory}
                     onSearch={handleSearch}
                 />
-            </div>
-            <div className={styles.wrapper}>
-                <div className={styles.filterComponents}>
-                    <div className={styles.filter} onClick={filterFavorites}>
-                        Favorites
+            </header>
+
+            <main className={styles.mainContent}>
+                <div className={styles.wrapper}>
+                    <div className={styles.filterComponents}>
+                        <div className={styles.filter} onClick={filterFavorites}>
+                            Favorites
+                        </div>
+                        <div className={styles.filter} onClick={allRecipes}>
+                            All
+                        </div>
                     </div>
-                    <div className={styles.filter} onClick={allRecipes}>
-                        All
-                    </div>
+                    <Link href="/addRecipe">
+                        <button className={styles.addButton}>Add</button>
+                    </Link>
                 </div>
-                <Link href="/addRecipe">
-                    <button className={styles.addButton}>Add</button>
-                </Link>
-            </div>
 
-            {loading ? (
-                <>
+                {loading ? (
                     <h1 style={{ marginLeft: "4rem" }}>Loading...</h1>
-                </>
-            ) : (
-                <>
-                    {isPopUp && selectedRecipe && (
-                        <PopUpRecipe recipe={selectedRecipe} setIsPopUp={setIsPopUp} />
-                    )}
-                    <div className={styles.recipes}>
-                        {currentItems.map((recipe, index) => (
-                            <RecipeCard
-                                key={index}
-                                recipe={recipe}
-                                setIsPopUp={setIsPopUp}
-                                setSelectedRecipe={setSelectedRecipe}
-                            />
-                        ))}
-                    </div>
+                ) : (
+                    <>
+                        {isPopUp && selectedRecipe && (
+                            <PopUpRecipe recipe={selectedRecipe} setIsPopUp={setIsPopUp} />
+                        )}
+                        <div className={styles.recipes}>
+                            {currentItems.map((recipe, index) => (
+                                <RecipeCard
+                                    key={index}
+                                    recipe={recipe}
+                                    setIsPopUp={setIsPopUp}
+                                    setSelectedRecipe={setSelectedRecipe}
+                                />
+                            ))}
+                        </div>
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            goToNextPage={goToNextPage}
+                            goToPreviousPage={goToPreviousPage}
+                        />
+                    </>
+                )}
+            </main>
 
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        goToNextPage={goToNextPage}
-                        goToPreviousPage={goToPreviousPage}
-                    />
-                </>
-            )}
             <footer className={styles.footer}>
                 <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
             </footer>

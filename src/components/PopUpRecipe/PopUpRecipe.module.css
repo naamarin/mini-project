@@ -73,11 +73,13 @@
 .FaRegStar, .starIcon {
     color: #ffd700;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .starIcon{
     color: #ffd700;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .image {
