@@ -1,6 +1,5 @@
 import { console } from 'inspector';
 import { MongoClient } from 'mongodb';
-console.log("---------", process.env.MONGODB_URI);
 
 const uri = process.env.MONGODB_URI;
 const options = {};
