@@ -10,7 +10,6 @@ export async function GET() {
     const recipes = await db.collection('recipes').find({}).toArray();
     return NextResponse.json(recipes);
   } catch (error) {
-    console.log(error);
     return NextResponse.json({ error: 'Failed to fetch recipes' }, { status: 500 });
   }
 }
