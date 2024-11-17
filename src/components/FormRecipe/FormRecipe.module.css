@@ -242,19 +242,19 @@
 }
 
 .successMessage {
-  background-color: #4caf50; /* ירוק, סימן להצלחה */
-  color: white; /* טקסט לבן */
-  padding: 15px; /* ריפוד מסביב להודעה */
-  margin-top: 20px; /* רווח מעל ההודעה */
-  text-align: center; /* מרכז את הטקסט */
-  border-radius: 5px; /* פינות מעוגלות */
-  font-size: 16px; /* גודל גופן קריא */
-  font-weight: bold; /* טקסט מודגש */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צללה קלה מתחת להודעה */
-  transition: opacity 0.3s ease; /* מעבר חלק */
+  background-color: #4caf50; 
+  color: white; 
+  padding: 15px; 
+  margin-top: 20px; 
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px; 
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease; 
 }
 
 .successMessage p {
-  margin: 0; /* מחיקת רווח פנימי ב-p */
+  margin: 0; 
 }
 

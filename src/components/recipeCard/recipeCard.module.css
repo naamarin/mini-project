@@ -76,20 +76,12 @@
     line-height: 1.4;
     text-align: start;
 
-    /* white-space: nowrap; */
-    /* Prevents the text from wrapping */
-    /* overflow: hidden; */
-    /* Hides any content that exceeds the container */
-    /* text-overflow: ellipsis; */
-    /* Adds the "..." when the content overflows */
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 240px;
 }
 
-/* From Uiverse.io by WhiteNervosa */
 .infoButton {
     font-size: 12px;
     color: #686868;

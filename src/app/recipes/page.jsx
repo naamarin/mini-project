@@ -13,12 +13,11 @@ function Recipes() {
     const [recipes, setRecipes] = useState([]);
     const [renderedRecipes, setRenderedRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
-    //  const [error, setError] = useState(null);
     const [isPopUp, setIsPopUp] = useState(false);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
-    const { initializeCategories } = categoriesStore();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 9;
+    const { initializeCategories } = categoriesStore();
+    const itemsPerPage = 8;
 
     useEffect(() => {
         const fetchRecipes = async () => {
